@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag 'custom', media: 'all' %>
+
+<div class="container">
+    <div class="header">
+        <%= image_tag('title_img.png', class: 'title-image') %>
+        <%= image_tag('head_img.png', class: 'corner-image') %>
+    </div>
+    <%# Only show main if theres a user%>
+    <% if @user %>
+    <div class="main">
+        <div class ="left-col">
+            <%= image_tag('head_img.png', class: 'pokemon-img') %>
+        </div>
+        <div class ="right-col">
+            <h1 class="title"><strong>Who's that Pokemon?</strong></h1>
+            <div class="top-input">
+                <button class="guess-button">
+                    Guess
+                </button>
+                <input type="text" class="input-box" placeholder="Pokemon name" />
+            </div>
+            <div class="hint-box">
+                <ol class="hints" id="hints-list">
+                    <%# Show @i as li%>
+                    
+                </ol>
+            </div>
+                <%= button_to 'Next hint', {controller: 'pages', action: 'update_hint'}, class: 'hint-button' %>
+            <div class="bottom-button">
+            </div>
+        </div>
+    </div>
+    <% end %>
+    <% if !@user %>
+    <div class = "user-creation">
+        
+        <%= form_tag({controller: 'pages', action: 'create_user'}, method: 'post') do %>
+            <%= label_tag(:name, "Enter your name:") %>
+            <%= text_field_tag(:name) %>
+            <%= submit_tag("Submit") %>
+        <% end %>
+        
+    </div>
+    <% end %>
+</div>
