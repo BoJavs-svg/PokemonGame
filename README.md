@@ -1,9 +1,24 @@
-# PokemonGame
-Gemfile: This file lists the gem dependencies for your application. A gem is a Ruby software package, and a Gemfile allows you to manage your project’s software needs.
-app: The app directory is where your main application code lives. This includes the models, controllers, views, assets, helpers, and mailers that make up the application itself. Rails gives you some application-level boilerplate for the MCV model to start out in files like app/models/application_record.rb, app/controllers/application_controller.rb, and app/views/layouts/application.html.erb.
-config: This directory contains your application’s configuration settings:
-config/routes.rb: Your application’s route declarations live in this file.
-config/application.rb: General settings for your application components are located in this file.
-config/environments: This directory is where configuration settings for your environments live. Rails includes three environments by default: development, production, and test.
-config/database.yml: Database configuration settings live in this file, which is broken into four sections: default, development, production, and test. Thanks to the Gemfile that came with the rails new command, which included the sqlite3 gem, our config/database.yml file has its adapter parameter set to sqlite3 already, specifying that we will use an SQLite database with this application.
-db: This folder includes a directory for database migrations called migrate, along with the schema.rb and seeds.rb files. schema.db contains information about your database, while seeds.rb is where you can place seed data for the database.
+# README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
