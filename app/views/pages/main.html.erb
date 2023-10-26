@@ -1,0 +1,58 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<%= stylesheet_link_tag 'custom', media: 'all' %>
+<script>
+  function updateHints() {
+    $.ajax({
+        //post 'pages/update_hint', to: 'pages#update_hint'
+        url: '<%= pages_update_hint_path(id: @user.id) %>',
+        type: 'post',
+        data: {user_id: <%= @user.id %>},
+        success: function(data) {
+ 
+            var hints = data.hints;
+            var list = document.getElementById("hints-list");
+            list.innerHTML = "";
+            for (var i = 0; i < hints.length; i++) {
+                var item = document.createElement("li");
+                item.setAttribute("class", "hint");
+                item.innerHTML = hints[i];
+                list.appendChild(item);
+            }         
+
+        }        
+    });}
+</script>
+<div class="container">
+    <div class="header">
+        <%= image_tag('title_img.png', class: 'title-image') %>
+        <%= image_tag('head_img.png', class: 'corner-image') %>
+    </div>
+    <div class="main">
+        <div class ="left-col">
+            <%= image_tag('head_img.png', class: 'pokemon-img') %>
+        </div>
+        <div class ="right-col">
+            <h1 class="title"><strong><%= @user.name%></strong></h1>
+            <h1 class="title"><strong>Who's that Pokemon?</strong></h1>
+            <div class="top-input">
+                <button class="guess-button">
+                    Guess
+                </button>
+                <input type="text" class="input-box" placeholder="Pokemon name" />
+            </div>
+            <div class="hint-box">
+                <ol class="hints" id="hints-list">
+                    
+                </ol>
+            </div>
+            <div class="bottom-button">
+                <button class="hint-button" onclick="updateHints()">
+                Get a hint
+                </button>
+                <button class="give-up-button">
+                    Give up
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
