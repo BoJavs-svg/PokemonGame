@@ -14,9 +14,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_25_192934) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.integer "points"
+    t.integer "hints"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "hints"
   end
 
 end
