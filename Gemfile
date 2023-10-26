@@ -67,4 +67,4 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'turbo-rails'
+gem "poke-api-v2"

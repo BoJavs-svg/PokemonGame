@@ -1,15 +1,131 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+/* app/assets/stylesheets/custom.css */
+body {
+    margin: 0;
+  }
+.container {
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+
+.header {
+    width: 100%;
+    height: 20vh;
+    background: #D80C0C;
+    display: flex;
+    justify-content: space-between;
+}
+
+.corner-image {
+    height: 100%;
+    width: auto;
+
+}
+
+.title-image {
+    height: 100%;
+    width: auto;
+
+}
+
+.main {
+    width: 100%;
+    display: flex;
+    
+}
+.left-col, .right-col {
+    flex: 1;
+  }
+  
+.left-col{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: gray;
+}
+
+.pokemon-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 80%; /* Set a maximum width */
+    max-height: 100%; /* Set a maximum height */
+    
+    filter: brightness(0%);
+
+    object-fit: contain; /* Maintain aspect ratio while fitting */
+
+}
+
+.right-col {
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+    padding:5vh;
+    padding-top: 0;
+}
+.right-col h1{
+    font-family: Jaldi;
+    font-size:4vh;
+    color: black;
+    word-wrap: break-word;
+    
+}
+.top-input{
+    display:flex;
+    justify-content: space-between;
+    height: 6vh;
+    
+}
+
+.guess-button {
+    width: 20%;
+
+    text-align: center;
+    color: white;
+    font-family: Jaldi;
+ 
+    background: #0FAD1F;
+}
+
+.bottom-button{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+}
+
+.hint-button {
+    height:100%;
+    text-align: center;
+    color: white;
+    font-size:1 rem;
+    font-family: Jaldi;
+    font-weight: 400;
+    word-wrap: break-word;
+
+    background: #AA0E0E;
+}
+
+
+.input-box {
+    width: 60%;
+    font-size: 1rem; 
+    background: white;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.hint-box {
+    width: 100%;
+    height: auto;
+
+}
+
+.user-creation{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

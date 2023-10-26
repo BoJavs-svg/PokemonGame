@@ -1,26 +1,53 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<%= stylesheet_link_tag 'custom', media: 'all' %>
+<%= stylesheet_link_tag 'application', media: 'all' %>
 <script>
-  function updateHints() {
+    var items = <%= @items.to_json.html_safe %>;
+    function updateHints() {
     $.ajax({
-        //post 'pages/update_hint', to: 'pages#update_hint'
         url: '<%= pages_update_hint_path(id: @user.id) %>',
         type: 'post',
-        data: {user_id: <%= @user.id %>},
+        data: { items: items },
+        dataType: 'json',
         success: function(data) {
- 
-            var hints = data.hints;
-            var list = document.getElementById("hints-list");
-            list.innerHTML = "";
-            for (var i = 0; i < hints.length; i++) {
-                var item = document.createElement("li");
-                item.setAttribute("class", "hint");
-                item.innerHTML = hints[i];
-                list.appendChild(item);
-            }         
+        var hints = data.hints;
+        var list = document.getElementById("hints-list");
+        list.innerHTML = "";
+        for (var i = 0; i < hints.length; i++) {
+            var item = document.createElement("li");
+            item.setAttribute("class", "hint");
+            item.innerHTML = hints[i];
+            list.appendChild(item);
+        }
+        }
+    });
+    }  
+    function giveUp() {
+        // Redirect to the 'inicio' page
+        window.location.href = '/';
+    }
+    function checkGuess() {
+    var guessInput = document.getElementById("guess-input").value.toLowerCase(); // Get the lowercase guess
+    var correctName = "<%= @pokemon.name.downcase %>"; // Get the lowercase Pokemon name
 
-        }        
-    });}
+    if (guessInput === correctName) {
+        // Guess is correct
+        $.ajax({
+        url: '<%= pages_update_points_path(id: @user.id) %>',
+        type: 'post',
+        data: { points: 10 }, // Adjust the points as needed
+        dataType: 'json',
+        success: function(data) {
+            window.location.href = '/pages/main?id=<%= @user.id %>';
+            var points = data.points;
+            document.getElementById("points").innerHTML = "points: " + points; // Update points on screen
+        }
+        });
+        // refresh screen
+    } else {
+        window.location.href = '/';
+    }
+    }
+
 </script>
 <div class="container">
     <div class="header">
@@ -29,16 +56,19 @@
     </div>
     <div class="main">
         <div class ="left-col">
-            <%= image_tag('head_img.png', class: 'pokemon-img') %>
+            <%# image is @pokemon.sprites.front_default %>
+            <%= image_tag(@pokemon.sprites.front_default, class: 'pokemon-img') %>
         </div>
         <div class ="right-col">
             <h1 class="title"><strong><%= @user.name%></strong></h1>
+            <h1 id= "points">points: <%=@user.points%></h1>
+            <h1 class="title"><strong>DEBUG:  <%= @pokemon.name%></strong></h1>
             <h1 class="title"><strong>Who's that Pokemon?</strong></h1>
             <div class="top-input">
-                <button class="guess-button">
+                <input type="text" class="input-box" id="guess-input" placeholder="Pokemon name" />
+                <button class="guess-button" onclick="checkGuess()">
                     Guess
                 </button>
-                <input type="text" class="input-box" placeholder="Pokemon name" />
             </div>
             <div class="hint-box">
                 <ol class="hints" id="hints-list">
@@ -49,7 +79,7 @@
                 <button class="hint-button" onclick="updateHints()">
                 Get a hint
                 </button>
-                <button class="give-up-button">
+                <button class="give-up-button" onclick="giveUp()">
                     Give up
                 </button>
             </div>
