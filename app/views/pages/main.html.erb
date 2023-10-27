@@ -40,6 +40,9 @@
             window.location.href = '/pages/main?id=<%= @user.id %>';
             var points = data.points;
             document.getElementById("points").innerHTML = "points: " + points; // Update points on screen
+            document.getElementById("img").style.filter = " brightness(100%)";
+            document.getElementById("message").innerHTML = "Correct Guess!";
+       
         }
         });
         // refresh screen
@@ -57,7 +60,7 @@
     <div class="main">
         <div class ="left-col">
             <%# image is @pokemon.image_urlt %>
-            <%= image_tag(@pokemon.image_url, class: 'pokemon-img') %>
+            <%= image_tag(@pokemon.image_url, class: 'pokemon-img', id: 'img') %>
         </div>
         <div class ="right-col">
             <h1 class="title"><strong><%= @user.name%></strong></h1>
@@ -82,7 +85,9 @@
                 <button class="give-up-button" onclick="giveUp()">
                     Give up
                 </button>
+             
             </div>
+            <h2 = "message">  </h2>
         </div>
     </div>
 </div>

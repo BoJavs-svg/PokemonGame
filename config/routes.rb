@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   get '/scoreboard', to: 'scores#scoreboard'
   post 'pokemons/create_random_pokemon', to: 'pokemons#create_random_pokemon'
 
+  resources :pokemons do
+    resources :abilities, only: [:new, :create]
+  end
 end
