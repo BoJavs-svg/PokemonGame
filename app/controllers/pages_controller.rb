@@ -17,7 +17,7 @@ class PagesController < ApplicationController
 
   def main
     @user = User.find_by(id: params[:id])
-    @pokemon = Pokemon::PokemonClient.get_random_pokemon
+    @pokemon = PokemonsController.new.create_random_pokemon
     @items = ["Weight " + @pokemon.weight.to_s, "Height " + @pokemon.height.to_s]    
   end
 

@@ -56,8 +56,8 @@
     </div>
     <div class="main">
         <div class ="left-col">
-            <%# image is @pokemon.sprites.front_default %>
-            <%= image_tag(@pokemon.sprites.front_default, class: 'pokemon-img') %>
+            <%# image is @pokemon.image_urlt %>
+            <%= image_tag(@pokemon.image_url, class: 'pokemon-img') %>
         </div>
         <div class ="right-col">
             <h1 class="title"><strong><%= @user.name%></strong></h1>
