@@ -8,7 +8,7 @@ class PokemonsController < ApplicationController
             if existing_pokemon
                 # Pokémon already exists, do something (e.g., show a message, redirect)
                 p "Pokémon #{pokemon_data.name} already exists in the database."
-                redirect_to root_path
+                @pokemon = Pokemon.find_by(name: pokemon_data.name)
             else
           # Save the fetched Pokemon data to the database
             @pokemon = Pokemon.create(
