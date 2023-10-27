@@ -1,0 +1,17 @@
+<h1>Scoreboard</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.points %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
